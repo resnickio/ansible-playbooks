@@ -1,8 +1,7 @@
-# ping.yml
+# software_update.yml
 ---
 
 - hosts: all
   gather_facts: true
   roles:
   - software_update
-  become: true
