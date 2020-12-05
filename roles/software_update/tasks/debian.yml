@@ -1,0 +1,11 @@
+# roles/software_updates/tasks/main.yml
+---
+
+- name: Update repositories
+  apt:
+    update_cache: yes
+
+- name: Upgrade installed packages
+  apt:
+    name: "*"
+    state: latest
