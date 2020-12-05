@@ -1,0 +1,4 @@
+# ping.yml
+---
+roles:
+  - ping
