@@ -1,4 +1,6 @@
 # ping.yml
 ---
-roles:
+
+- hosts: all
+  roles:
   - ping
