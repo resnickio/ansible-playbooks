@@ -1,0 +1,20 @@
+# roles/config_vm/tasks/main.yml
+---
+- name: Configure VM hardware
+  community.vmware.vmware_guest:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ vcenter_validatecerts }}"
+    datacenter: "{{ vcenter_datacenter }}"
+    cluster: "{{ vcenter_cluster }}"
+    folder: "{{ vcenter_folder }}"
+    name: "{{ vm_name }}"
+    hardware:
+      memory_mb: "{{ vm_memory }}"
+      num_cpus: "{{ vm_cpucount }}"
+      num_cpu_cores_per_socket: "{{ vm_cpucount }}"
+    networks:
+    - name: "{{ vm_portgroup }}"
+      dvswitch_name: "{{ vm_dswitch }}"
+    wait_for_customization: yes

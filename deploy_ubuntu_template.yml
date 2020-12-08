@@ -1,0 +1,7 @@
+# deploy_ubuntu_template.yml
+---
+- hosts: localhost
+  gather_facts: false
+  roles:
+  - deploy_vm_template
+  - config_vm
