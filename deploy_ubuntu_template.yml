@@ -2,6 +2,38 @@
 ---
 - hosts: localhost
   gather_facts: false
-  roles:
-  - deploy_vm_template
-  - config_vm
+
+  tasks:
+    - name: Deploy VM template
+      community.vmware.vmware_content_deploy_ovf_template:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: "{{ vcenter_validatecerts }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        cluster: "{{ vcenter_cluster }}"
+        folder: "{{ vcenter_folder }}"
+        host: "{{ vcenter_host }}"
+        resource_pool:
+        datastore: "{{ vcenter_datastore }}"
+        ovf_template: "{{ vcenter_ovftemplate }}"
+        name: "{{ vm_name }}"
+
+    - name: Configure VM hardware
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: "{{ vcenter_validatecerts }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        cluster: "{{ vcenter_cluster }}"
+        folder: "{{ vcenter_folder }}"
+        name: "{{ vm_name }}"
+        hardware:
+          memory_mb: "{{ vm_memory }}"
+          num_cpus: "{{ vm_cpucount }}"
+          num_cpu_cores_per_socket: "{{ vm_cpucount }}"
+        networks:
+        - name: "{{ vm_portgroup }}"
+          dvswitch_name: "{{ vm_dswitch }}"
+        wait_for_customization: yes

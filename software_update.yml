@@ -1,7 +1,12 @@
 # software_update.yml
 ---
-
 - hosts: all
   gather_facts: true
-  roles:
-  - software_update
+
+  tasks:
+  - name: Update and upgrade installed pacakges on Debian-based hosts
+    apt:
+      name: "*"
+      state: latest
+      update_cache: yes
+    become: yes

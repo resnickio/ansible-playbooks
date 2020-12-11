@@ -1,6 +1,0 @@
-# roles/software_updates/tasks/main.yml
----
-
-- name: Update Debian-based hosts
-  import_tasks: debian.yml
-  when: ansible_facts['os_family']|lower == 'debian'

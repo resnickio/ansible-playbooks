@@ -1,5 +1,0 @@
-# roles/ping/tasks/main.yml
----
-
-- name: Ping host
-  ping:
