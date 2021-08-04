@@ -1,4 +1,4 @@
-# ping.yml
+# print_facts.yml
 ---
 - hosts: all
   gather_facts: true
