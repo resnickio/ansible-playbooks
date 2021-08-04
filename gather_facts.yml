@@ -1,0 +1,8 @@
+# print_facts.yml
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+  - name: Facts have been gathered
+    debug:
+      msg: "Facts are now gathered"
