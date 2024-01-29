@@ -2,3 +2,6 @@
 *.retry
 ansible.cfg
 hosts.yml
+
+### MacOS ###
+.DS_Store
